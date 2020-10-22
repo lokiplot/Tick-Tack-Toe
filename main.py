@@ -35,7 +35,19 @@ class Battlefield:
             print(line_appearance)
 
     def print_whose_step(self):
-        print('Now ' + str(self.names[self.actual_step]) + 'is stepping.')
+        return str(self.names[self.actual_step])
+
+    def is_game_ended(self):
+        is_ended = False
+        for line in self.fields:
+            if line == ['o', 'o', 'o'] or line == ['x', 'x', 'x']:
+                is_ended = True
+        for i in range(3):
+            if not ['x', 'x', 'x'] == [self.fields[i][0], self.fields[i][1], self.fields[i][2]] or [self.fields[0][i], self.fields[1][i], self.fields[2][i]] == ['o', 'o', 'o']:
+                is_ended = True
+        if self.fields[0][0] == self.fields[1][1] and self.fields[2][2] == self.fields[1][1]:
+            is_ended = True
+        return is_ended
 
 
 b = Battlefield('1', '2')
